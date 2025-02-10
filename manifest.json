@@ -1,0 +1,53 @@
+{
+  "manifest_version": 3,
+  "name": "AI Translator",
+  "version": "1.0",
+  "description": "使用AI模型进行文本翻译的Chrome插件",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://api.openai.com/*",
+    "https://api.deepseek.com/*",
+    "https://api.siliconflow.cn/*",
+    "*://*.github.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["styles.css"],
+      "run_at": "document_end",
+      "all_frames": false,
+      "match_about_blank": false
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  },
+  "web_accessible_resources": [{
+    "resources": ["styles.css", "icons/*"],
+    "matches": [
+      "*://*/*",
+      "*://*.github.com/*"
+    ]
+  }]
+} 

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 320px;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      margin: 0;
+      background: #f5f7fa;
+    }
+
+    h3 {
+      margin: 0 0 20px 0;
+      color: #2c3e50;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #34495e;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    select, input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid #e2e8f0;
+      border-radius: 6px;
+      font-size: 14px;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    select:focus, input:focus {
+      outline: none;
+      border-color: #3498db;
+      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #2980b9;
+    }
+
+    .provider-icon {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    .provider-option {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+    }
+
+    .provider-option:hover {
+      background-color: #f8f9fa;
+    }
+
+    .status-message {
+      margin-top: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 13px;
+      text-align: center;
+      display: none;
+    }
+
+    .status-message.success {
+      background-color: #d4edda;
+      color: #155724;
+      display: block;
+    }
+
+    .status-message.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      display: block;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h3>AI 翻译设置</h3>
+  <div class="form-group">
+    <label>选择服务商</label>
+    <select id="provider">
+      <option value="openai" class="provider-option">OpenAI</option>
+      <option value="deepseek" class="provider-option">DeepSeek</option>
+      <option value="siliconflow" class="provider-option">SiliconFlow</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>选择模型</label>
+    <select id="model">
+      <!-- 模型选项将由 JavaScript 动态填充 -->
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>API Key</label>
+    <div class="input-wrapper">
+      <input type="password" id="apiKey" placeholder="请输入您的 API Key">
+      <span class="toggle-password" onclick="togglePassword()">显示</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>API 地址</label>
+    <input type="text" id="apiUrl" placeholder="API 接口地址">
+  </div>
+
+  <button id="save">保存设置</button>
+  <div id="statusMessage" class="status-message"></div>
+
+  <script src="popup.js"></script>
+  <script>
+    function togglePassword() {
+      const apiKeyInput = document.getElementById('apiKey');
+      const toggleBtn = document.querySelector('.toggle-password');
+      
+      if (apiKeyInput.type === 'password') {
+        apiKeyInput.type = 'text';
+        toggleBtn.textContent = '隐藏';
+      } else {
+        apiKeyInput.type = 'password';
+        toggleBtn.textContent = '显示';
+      }
+    }
+  </script>
+</body>
+</html> 
